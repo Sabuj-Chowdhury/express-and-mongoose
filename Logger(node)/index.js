@@ -5,7 +5,8 @@ const fs = require("fs");
 const inputArgs = process.argv.slice(2);
 
 const text = inputArgs.join(" ");
-const msg = `${text} \n`;
+const timeStamp = new Date().toISOString();
+const msg = `${text} ${timeStamp} \n`;
 
 if (!msg) {
   console.log("please provide message to log");
