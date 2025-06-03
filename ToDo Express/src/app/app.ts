@@ -1,8 +1,10 @@
 import express, { Application, Request, Response } from "express";
 const app: Application = express();
 
+app.use(express.json());
+
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Welcome to ToDo's app");
 });
 
 app.get("/todos", (req: Request, res: Response) => {
