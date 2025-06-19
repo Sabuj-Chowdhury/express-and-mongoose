@@ -47,3 +47,15 @@ userRouter.patch("/:userID", async (req: Request, res: Response) => {
     user,
   });
 });
+
+userRouter.delete("/:userID", async (req: Request, res: Response) => {
+  const userID = req.params.userID;
+
+  const user = await User.findByIdAndDelete(userID);
+
+  res.status(201).json({
+    success: true,
+    message: "user deleted!",
+    user,
+  });
+});
