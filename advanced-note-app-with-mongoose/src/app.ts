@@ -24,7 +24,7 @@ const noteSchema = new Schema({
 
 const Note = model("Note", noteSchema);
 
-app.post("/note/create-note", async (req: Request, res: Response) => {
+app.post("/notes/create-note", async (req: Request, res: Response) => {
   // approach -1 for creating data
   //   const myNote = new Note({
   //     title: "Learning express",
@@ -35,6 +35,7 @@ app.post("/note/create-note", async (req: Request, res: Response) => {
 
   //   await myNote.save();
 
+  // approach -2
   const body = req.body;
 
   const note = await Note.create(body);
@@ -44,6 +45,16 @@ app.post("/note/create-note", async (req: Request, res: Response) => {
     message: "Note created successfully!",
     // note: myNote,
     note,
+  });
+});
+
+app.get("/notes", async (req: Request, res: Response) => {
+  const notes = await Note.find();
+
+  res.status(201).json({
+    success: true,
+    message: "All Notes!",
+    notes,
   });
 });
 
