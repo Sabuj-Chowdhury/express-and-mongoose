@@ -35,3 +35,15 @@ userRouter.get("/:userID", async (req: Request, res: Response) => {
     user,
   });
 });
+
+userRouter.patch("/:userID", async (req: Request, res: Response) => {
+  const userID = req.params.userID;
+  const updateUser = req.body;
+  const user = await User.findByIdAndUpdate(userID, updateUser, { new: true });
+
+  res.status(201).json({
+    success: true,
+    message: "user updated!",
+    user,
+  });
+});
