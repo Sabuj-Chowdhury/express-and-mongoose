@@ -1,11 +1,13 @@
 import express, { Application, Request, Response } from "express";
 import { model, Schema } from "mongoose";
 import { noteRouter } from "./app/controller/note.controller";
+import { userRouter } from "./app/controller/user.controller";
 
 const app: Application = express();
 
 app.use(express.json());
 app.use("/notes", noteRouter);
+app.use("/users", userRouter);
 
 // const noteSchema = new Schema(
 //   {
