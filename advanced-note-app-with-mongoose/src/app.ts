@@ -69,6 +69,18 @@ app.get("/notes/:noteID", async (req: Request, res: Response) => {
   });
 });
 
+app.patch("/notes/:noteID", async (req: Request, res: Response) => {
+  const noteID = req.params.noteID;
+  const updateBody = req.body;
+  const note = await Note.findByIdAndUpdate(noteID, updateBody, { new: true });
+
+  res.status(201).json({
+    success: true,
+    message: "note updated!",
+    note,
+  });
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to note app");
 });
