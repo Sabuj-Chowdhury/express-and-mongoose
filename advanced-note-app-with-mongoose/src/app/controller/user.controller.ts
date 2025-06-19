@@ -6,21 +6,32 @@ export const userRouter = express.Router();
 userRouter.post("/create-user", async (req: Request, res: Response) => {
   const body = req.body;
 
-  const note = await User.create(body);
+  const user = await User.create(body);
 
   res.status(201).json({
     success: true,
     message: "User created successfully!",
-    note,
+    user,
   });
 });
 
 userRouter.get("/", async (req: Request, res: Response) => {
-  const note = await User.find();
+  const users = await User.find();
 
   res.status(201).json({
     success: true,
     message: "all users!",
-    note,
+    users,
+  });
+});
+
+userRouter.get("/:userID", async (req: Request, res: Response) => {
+  const userID = req.params.userID;
+  const user = await User.findById(userID);
+
+  res.status(201).json({
+    success: true,
+    message: "single user!",
+    user,
   });
 });
