@@ -58,6 +58,17 @@ app.get("/notes", async (req: Request, res: Response) => {
   });
 });
 
+app.get("/notes/:noteID", async (req: Request, res: Response) => {
+  const noteID = req.params.noteID;
+  const note = await Note.findById(noteID);
+
+  res.status(201).json({
+    success: true,
+    message: "Single Note By id!",
+    note,
+  });
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to note app");
 });
