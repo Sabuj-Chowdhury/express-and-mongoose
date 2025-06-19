@@ -14,3 +14,13 @@ userRouter.post("/create-user", async (req: Request, res: Response) => {
     note,
   });
 });
+
+userRouter.get("/", async (req: Request, res: Response) => {
+  const note = await User.find();
+
+  res.status(201).json({
+    success: true,
+    message: "all users!",
+    note,
+  });
+});
