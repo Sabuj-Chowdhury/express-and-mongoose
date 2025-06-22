@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import config from "./config";
 import mongoose from "mongoose";
@@ -7,6 +7,13 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req: Request, res: Response) => {
+  res.send({
+    success: true,
+    message: "just a dumb thing!",
+  });
+});
 
 app.listen(config.port, () => {
   console.log(`Server running at : ${config.port}`);
